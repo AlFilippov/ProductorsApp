@@ -1,82 +1,93 @@
 package com.filippovalexandr.productorsapplication.network.dto;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "model_id",
-        "year",
-        "owner"
-})
-public class GetAllCarsDTO {
+import io.realm.RealmObject;
 
-    @JsonProperty("id")
+public class GetAllCarsDTO extends RealmObject {
+
+    @SerializedName("id")
+    @Expose
     private String id;
-    @JsonProperty("model_id")
+    @SerializedName("model_id")
+    @Expose
     private long modelId;
-    @JsonProperty("year")
+    @SerializedName("year")
+    @Expose
     private long year;
-    @JsonProperty("owner")
+    @SerializedName("owner")
+    @Expose
     private String owner;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private int idData;
+    private String title_model;
 
-    @JsonProperty("id")
+    public String getTitle_model() {
+        return title_model;
+    }
+
+    public void setTitle_model(String title_model) {
+        this.title_model = title_model;
+    }
+
+    public int getIdData() {
+        return idData;
+    }
+
+    public void setIdData(int idData) {
+        this.idData = idData;
+    }
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public GetAllCarsDTO() {
+    }
+
+    /**
+     * @param modelId
+     * @param id
+     * @param owner
+     * @param year
+     */
+    public GetAllCarsDTO(String id, long modelId, long year, String owner) {
+        super();
+        this.id = id;
+        this.modelId = modelId;
+        this.year = year;
+        this.owner = owner;
+    }
+
     public String getId() {
         return id;
     }
 
-    @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
     }
 
-    @JsonProperty("model_id")
     public long getModelId() {
         return modelId;
     }
 
-    @JsonProperty("model_id")
     public void setModelId(long modelId) {
         this.modelId = modelId;
     }
 
-    @JsonProperty("year")
     public long getYear() {
         return year;
     }
 
-    @JsonProperty("year")
     public void setYear(long year) {
         this.year = year;
     }
 
-    @JsonProperty("owner")
     public String getOwner() {
         return owner;
     }
 
-    @JsonProperty("owner")
     public void setOwner(String owner) {
         this.owner = owner;
-    }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

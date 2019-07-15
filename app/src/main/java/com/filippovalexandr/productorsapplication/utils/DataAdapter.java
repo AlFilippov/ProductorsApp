@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.filippovalexandr.productorsapplication.R;
 import com.filippovalexandr.productorsapplication.network.dto.GetAllCarsDTO;
 
+import java.util.List;
+
 import io.realm.RealmResults;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
@@ -35,7 +37,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull DataAdapter.ViewHolder viewHolder, int position) {
 viewHolder.mOwnerCar.setText(mGetAllCarsDTOList.get(position).getOwner());
 viewHolder.mIdCar.setText(mGetAllCarsDTOList.get(position).getId());
-viewHolder.mModelCar.setText(mGetAllCarsDTOList.get(position).getTitle_model());
+viewHolder.mModelCar.setText(String.valueOf(mGetAllCarsDTOList.get(position).getModelId()));
 viewHolder.mYearCar.setText(String.valueOf(mGetAllCarsDTOList.get(position).getYear()));
     }
 

@@ -2,9 +2,10 @@ package com.filippovalexandr.productorsapplication.model.database.DataBaseContro
 
 import android.content.Context;
 
-import com.filippovalexandr.productorsapplication.fragments.RecyclerViewFragment;
 import com.filippovalexandr.productorsapplication.network.dto.GetAllCarsDTO;
 import com.filippovalexandr.productorsapplication.network.dto.GetModelInfoDTO;
+
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -15,13 +16,12 @@ public class RealmController {
     private GetAllCarsDTO realmModelAllCars;
     private GetModelInfoDTO realmModelCarsInfo;
 
-    public RealmController(Context context) {
-        RealmConfiguration config = new RealmConfiguration.Builder(context).build();
-        mRealm.setDefaultConfiguration(config);
-        mRealm = Realm.getDefaultInstance();
+    public RealmController(Realm realm) {
+        mRealm = realm;
+
     }
 
-    public void addInfoAllCars(String id_cars, int model_id, int year, String owner) {
+    public void addModelAllCars(String id_cars, int model_id, int year, String owner) {
         mRealm.beginTransaction();
         realmModelAllCars = mRealm.createObject(GetAllCarsDTO.class);
         int id = getNextKeyAllCars();
@@ -35,7 +35,19 @@ public class RealmController {
 
     }
 
-    public void addCarsInfo(int id_title, String title) {
+    public void addAllCarsNetwork(List<GetAllCarsDTO> getAllCarsDTOLsit) {
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(getAllCarsDTOLsit);
+        mRealm.commitTransaction();
+    }
+
+    public void addModelInfoNetWork(List<GetModelInfoDTO> getModelInfoDTOList) {
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(getModelInfoDTOList);
+        mRealm.commitTransaction();
+    }
+
+    public void addModelInfo(int id_title, String title) {
         mRealm.beginTransaction();
         GetModelInfoDTO realmModelCarsInfo = mRealm.createObject(GetModelInfoDTO.class);
         int id = getNextKeyCarsInfo();

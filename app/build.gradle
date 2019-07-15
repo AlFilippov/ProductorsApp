@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -49,5 +50,10 @@ dependencies {
 //Cicerone
     implementation 'ru.terrakok.cicerone:cicerone:1.0'
     //Realm
-    implementation 'io.realm:realm-android:0.87.5'
+    //Rx
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex:rxjava:1.1.6'
+
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
 }

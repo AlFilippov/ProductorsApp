@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import com.filippovalexandr.productorsapplication.R;
 import com.filippovalexandr.productorsapplication.network.dto.GetAllCarsDTO;
-
-import java.util.List;
+import com.filippovalexandr.productorsapplication.network.dto.GetModelInfoDTO;
 
 import io.realm.RealmResults;
 
@@ -19,11 +18,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     private Context mContext;
     private RealmResults<GetAllCarsDTO> mGetAllCarsDTOList;
+    private RealmResults<GetModelInfoDTO> mGetModelInfoDTOList;
 
-
-    public DataAdapter(Context context, RealmResults<GetAllCarsDTO> getAllCarsDTOList) {
+    public DataAdapter(Context context, RealmResults<GetAllCarsDTO> getAllCarsDTOList, RealmResults<GetModelInfoDTO> getModelInfoDTOList) {
         mContext = context;
         mGetAllCarsDTOList = getAllCarsDTOList;
+        mGetModelInfoDTOList = getModelInfoDTOList;
     }
 
     @NonNull
@@ -35,16 +35,17 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DataAdapter.ViewHolder viewHolder, int position) {
-viewHolder.mOwnerCar.setText(mGetAllCarsDTOList.get(position).getOwner());
-viewHolder.mIdCar.setText(mGetAllCarsDTOList.get(position).getId());
-viewHolder.mModelCar.setText(String.valueOf(mGetAllCarsDTOList.get(position).getModelId()));
-viewHolder.mYearCar.setText(String.valueOf(mGetAllCarsDTOList.get(position).getYear()));
+        viewHolder.mOwnerCar.setText(mGetAllCarsDTOList.get(position).getOwner());
+        viewHolder.mIdCar.setText(mGetAllCarsDTOList.get(position).getId());
+        viewHolder.mModelCar.setText(mGetModelInfoDTOList.get(mGetAllCarsDTOList.get(position).getModelId()).getTitle());
+        viewHolder.mYearCar.setText(String.valueOf(mGetAllCarsDTOList.get(position).getYear()));
     }
 
     @Override
     public int getItemCount() {
         return mGetAllCarsDTOList.size();
     }
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView mIdCar;
@@ -53,13 +54,12 @@ viewHolder.mYearCar.setText(String.valueOf(mGetAllCarsDTOList.get(position).getY
         TextView mOwnerCar;
 
 
-
         ViewHolder(View view) {
             super(view);
-            mIdCar=view.findViewById(R.id.id_car);
-            mModelCar=view.findViewById(R.id.model_car);
-            mYearCar=view.findViewById(R.id.year_car);
-            mOwnerCar=view.findViewById(R.id.owner_car);
+            mIdCar = view.findViewById(R.id.id_car);
+            mModelCar = view.findViewById(R.id.model_car);
+            mYearCar = view.findViewById(R.id.year_car);
+            mOwnerCar = view.findViewById(R.id.owner_car);
 
         }
 

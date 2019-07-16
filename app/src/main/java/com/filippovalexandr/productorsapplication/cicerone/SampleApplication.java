@@ -7,6 +7,9 @@ import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 
+/*
+Пока не используется
+ */
 public class SampleApplication extends Application {
     public static SampleApplication INSTANCE;
     private Cicerone<Router> cicerone;

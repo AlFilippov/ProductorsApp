@@ -9,7 +9,8 @@ public class SingleButtonPresenter extends MvpPresenter<SingleButtonView> {
     public void clickButton() {
         getViewState().showToast();
     }
-    public void changeFragment(){
+
+    public void changeFragment() {
         getViewState().nextFragment();
     }
 }

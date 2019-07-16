@@ -1,6 +1,4 @@
-package com.filippovalexandr.productorsapplication.model.database.DataBaseController;
-
-import android.content.Context;
+package com.filippovalexandr.productorsapplication.model;
 
 import com.filippovalexandr.productorsapplication.network.dto.GetAllCarsDTO;
 import com.filippovalexandr.productorsapplication.network.dto.GetModelInfoDTO;
@@ -8,7 +6,6 @@ import com.filippovalexandr.productorsapplication.network.dto.GetModelInfoDTO;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 public class RealmController {
@@ -69,11 +66,18 @@ public class RealmController {
         return mRealm.where(GetAllCarsDTO.class).max("idData").intValue() + 1;
     }
 
+    public void addTitleAllCars(String title) {
+        mRealm.beginTransaction();
+        realmModelAllCars.setTitle_model(title);
+        mRealm.commitTransaction();
+
+    }
+
     private int getNextKeyCarsInfo() {
         return mRealm.where(GetModelInfoDTO.class).max("idData").intValue() + 1;
     }
 
-    private String findModel(int id) {
+    public String findModel(long id) {
         if (realmModelCarsInfo != null) {
             realmModelCarsInfo = mRealm.where(GetModelInfoDTO.class).equalTo("model_id", id).findFirst();
             return realmModelCarsInfo.getTitle();

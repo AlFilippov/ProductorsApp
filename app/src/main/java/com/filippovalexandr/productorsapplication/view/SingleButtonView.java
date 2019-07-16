@@ -7,6 +7,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 public interface SingleButtonView extends MvpView {
     @StateStrategyType(OneExecutionStateStrategy.class)
     void showToast();
-@StateStrategyType(OneExecutionStateStrategy.class)
+
+    @StateStrategyType(OneExecutionStateStrategy.class)
     void nextFragment();
 }

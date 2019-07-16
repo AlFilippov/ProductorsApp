@@ -12,7 +12,7 @@ public class GetAllCarsDTO extends RealmObject {
     private String id;
     @SerializedName("model_id")
     @Expose
-    private long modelId;
+    private int modelId;
     @SerializedName("year")
     @Expose
     private long year;
@@ -50,7 +50,7 @@ public class GetAllCarsDTO extends RealmObject {
      * @param owner
      * @param year
      */
-    public GetAllCarsDTO(String id, long modelId, long year, String owner) {
+    public GetAllCarsDTO(String id, int modelId, long year, String owner) {
         super();
         this.id = id;
         this.modelId = modelId;
@@ -66,11 +66,11 @@ public class GetAllCarsDTO extends RealmObject {
         this.id = id;
     }
 
-    public long getModelId() {
+    public int getModelId() {
         return modelId;
     }
 
-    public void setModelId(long modelId) {
+    public void setModelId(int modelId) {
         this.modelId = modelId;
     }
 

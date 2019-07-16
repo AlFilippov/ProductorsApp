@@ -1,8 +1,8 @@
 package com.filippovalexandr.productorsapplication.utils;
 
+/*
+Тут хранятся переменные , чтобы не хардкодить
+ */
 public interface Utils {
-    String SINGLE_SCREEN = "single";
     String RV_SCREEN = "rv";
-    String GET_ALLCARS ="cars";
-    String GET_INFO = "info";
 }

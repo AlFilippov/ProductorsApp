@@ -47,6 +47,7 @@ public class SingleButtonFragment extends MvpAppCompatFragment implements Single
     public void showToast() {
         Toast.makeText(getContext(), "Поехали за машинами", Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public void nextFragment() {
         mChangeFragment.forwardtoRv("rv");
